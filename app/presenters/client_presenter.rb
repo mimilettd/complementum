@@ -19,6 +19,7 @@ class ClientPresenter
       industry_group: industry_group,
       sic: sic,
       description: description,
+      policies_count: policies_count,
       policies: policies
     }
   end
@@ -71,7 +72,11 @@ class ClientPresenter
     client&.description
   end
 
+  def policies_count
+    client.policies.count
+  end
+
   def policies
-    PoliciesPresenter.present_collection(client&.policies)
+    PoliciesPresenter.present_collection(client.policies)
   end
 end
