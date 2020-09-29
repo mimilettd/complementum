@@ -1,17 +1,16 @@
-class ClientForm
+class PolicyForm
   include ActiveModel::Model
 
   ATTRIBUTE_NAMES = [
     'Id',
-    'Name',
-    'Address',
-    'City',
-    'State',
+    'Type',
     'Division',
-    'Major Group',
-    'Industry Group',
-    'SIC',
-    'Description'
+    'CarrierId',
+    'ClientId',
+    'EffectiveDate',
+    'ExpirationDate',
+    'WrittenPremium',
+    'CarrierPolicyNumber'
   ]
 
   attr_reader :attributes
@@ -36,10 +35,7 @@ class ClientForm
 
   def save!
     if valid?
-      address_attributes = attributes[:address]
-      client_attributes = attributes.except(:address)
-      Client.create!(client_attributes)
-      Address.create!(address_attributes)
+      Policy.create!(attributes)
     end
 
     self

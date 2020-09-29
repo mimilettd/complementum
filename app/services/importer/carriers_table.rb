@@ -1,6 +1,6 @@
 require 'csv'
 
-class Importer::ClientsTable
+class Importer::CarriersTable
   ImportError = Class.new(StandardError)
 
   attr_reader :csv
@@ -23,7 +23,7 @@ class Importer::ClientsTable
   private
 
   def validate_headers!(headers)
-    attribute_names = ClientForm.attribute_names
+    attribute_names = CarrierForm.attribute_names
     non_existent_attribute_names = headers - attribute_names
 
     if non_existent_attribute_names.any?
@@ -35,19 +35,16 @@ class Importer::ClientsTable
   end
 
   def create_client!(row, row_index)
-    form = ClientForm.new(
+    form = CarrierForm.new(
       id: parse(row.fetch('Id')),
-      name: row.fetch('Name'),
-      division: row.fetch('Division'),
-      major_group: parse(row.fetch('Major Group')),
-      industry_group: parse(row.fetch('Industry Group')),
-      sic: parse(row.fetch('SIC')),
-      description: row.fetch('Description'),
+      name: row.fetch('Company Name'),
       address: {
-        address_1: row.fetch('Address'),
-        city: row.fetch('City'),
-        state: row.fetch('State'),
-        userable_type: 'Client',
+        address_1: row.fetch('Company Address 1'),
+        address_2: row.fetch('Company Address 2'),
+        city: row.fetch('Company City'),
+        state: row.fetch('Company State'),
+        zip: row.fetch('Company Zip'),
+        userable_type: 'Carrier',
         userable_id: parse(row.fetch('Id'))
       }
     )

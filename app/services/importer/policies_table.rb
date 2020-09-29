@@ -1,6 +1,6 @@
 require 'csv'
 
-class Importer::ClientsTable
+class Importer::PoliciesTable
   ImportError = Class.new(StandardError)
 
   attr_reader :csv
@@ -23,7 +23,7 @@ class Importer::ClientsTable
   private
 
   def validate_headers!(headers)
-    attribute_names = ClientForm.attribute_names
+    attribute_names = PolicyForm.attribute_names
     non_existent_attribute_names = headers - attribute_names
 
     if non_existent_attribute_names.any?
@@ -35,21 +35,16 @@ class Importer::ClientsTable
   end
 
   def create_client!(row, row_index)
-    form = ClientForm.new(
+    form = PolicyForm.new(
       id: parse(row.fetch('Id')),
-      name: row.fetch('Name'),
+      category: row.fetch('Type'),
       division: row.fetch('Division'),
-      major_group: parse(row.fetch('Major Group')),
-      industry_group: parse(row.fetch('Industry Group')),
-      sic: parse(row.fetch('SIC')),
-      description: row.fetch('Description'),
-      address: {
-        address_1: row.fetch('Address'),
-        city: row.fetch('City'),
-        state: row.fetch('State'),
-        userable_type: 'Client',
-        userable_id: parse(row.fetch('Id'))
-      }
+      carrier_id: parse(row.fetch('CarrierId')),
+      client_id: parse(row.fetch('ClientId')),
+      effective_date: row.fetch('EffectiveDate'),
+      expiration_date: row.fetch('ExpirationDate'),
+      written_premium: parse(row.fetch('WrittenPremium')),
+      carrier_policy_number: parse(row.fetch('CarrierPolicyNumber'))
     )
     form.save!
 
