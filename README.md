@@ -1,24 +1,42 @@
-# README
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
+```
+Ruby 2.6.2
+```
 
-Things you may want to cover:
+### Installing
+Clone the app and change into the `complementum` directory:
 
-* Ruby version
+```
+$ git clone https://github.com/mimilettd/complementum.git
+$ cd complementum
+```
 
-* System dependencies
+### Install the dependencies:
 
-* Configuration
+```
+bundle install
+```
 
-* Database creation
+Run the following commands in your terminal:
 
-* Database initialization
+```
+$ rake db:create db:migrate
 
-* How to run the test suite
+# Import clients data
+$ rails db:import_clients_table\[seed/Clients.csv\]
 
-* Services (job queues, cache servers, search engines, etc.)
+# Import carriers data
+$ rails db:import_carriers_table\[seed/Carriers.csv\]
 
-* Deployment instructions
+# Import policies data
+$ rails db:import_policies_table\[seed/Policies.csv\]
 
-* ...
+# Start the server
+$ rails s
+
+```
+
+To view basic information on `Clients`, visit http://localhost:3000/v1/clients?page=1
