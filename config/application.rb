@@ -31,5 +31,8 @@ module Complementum
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.after_initialize do |app|
+      app.config.paths.add 'app/presenters', :eager_load => true
+    end
   end
 end
