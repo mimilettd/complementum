@@ -15,11 +15,11 @@ module Api
       end
 
       def policies_count
-        Policy.all.count
+        Policy.count
       end
 
       def carriers_count
-        Carrier.all.count
+        Carrier.count
       end
 
       def presented_clients
