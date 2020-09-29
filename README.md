@@ -26,13 +26,16 @@ Run the following commands in your terminal:
 $ rake db:create db:migrate
 
 # Import clients data
-$ rails db:import_clients_table\[seed/Clients.csv\]
+$ rails db:import_clients_table\[seed/Clients.csv\] <- zsh
+$ rails db:import_clients_table[seed/Clients.csv] <- bash
 
 # Import carriers data
-$ rails db:import_carriers_table\[seed/Carriers.csv\]
+$ rails db:import_carriers_table\[seed/Carriers.csv\] <- zsh
+$ rails db:import_carriers_table[seed/Carriers.csv] <- bash
 
 # Import policies data
-$ rails db:import_policies_table\[seed/Policies.csv\]
+$ rails db:import_policies_table\[seed/Policies.csv\] <- zsh
+$ rails db:import_policies_table[seed/Policies.csv] <- bash
 
 # Start the server
 $ rails s
