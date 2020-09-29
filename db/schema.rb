@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_012240) do
   create_table "policies", force: :cascade do |t|
     t.bigint "client_id"
     t.bigint "carrier_id"
+    t.string "category"
     t.string "division"
     t.date "effective_date"
     t.date "expiration_date"

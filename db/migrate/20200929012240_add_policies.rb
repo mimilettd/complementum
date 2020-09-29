@@ -3,6 +3,7 @@ class AddPolicies < ActiveRecord::Migration[6.0]
     create_table :policies do |t|
       t.belongs_to :client
       t.belongs_to :carrier
+      t.string :category
       t.string :division
       t.date :effective_date
       t.date :expiration_date
